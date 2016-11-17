@@ -13,19 +13,15 @@ function malta_pug(o, options) {
 		start = new Date(),
 		msg,
 		oldname = o.name,
-        pluginName = path.basename(path.dirname(__filename)),
-		doErr = function (e) {
-			console.log(('[ERROR on ' + o.name + ' using ' + pluginName + '] :').red());
-			console.dir(e);
-			self.stop();
-		};
+        pluginName = path.basename(path.dirname(__filename));
+
 	return function (solve, reject){
-		try{
+		try {
 			pug.renderFile(o.name, {basedir : self.baseDir}, function (x, content) {
 				o.content = content;
 				o.name = o.name.replace(/\.pug$/, '.html');
 				fs.writeFile(o.name, o.content, function(err) {
-					err && doErr(err);
+					err && self.doErr(err, o, pluginName);
 					msg = 'plugin ' + pluginName.white() + ' wrote ' + o.name + ' (' + self.getSize(o.name) + ')';
 					fs.unlink(oldname);
 					solve(o);
@@ -33,7 +29,7 @@ function malta_pug(o, options) {
 				});
 			});
 		} catch (err) {
-			doErr(err);
+			self.doErr(err, o, pluginName);
 		}
 	};
 }
