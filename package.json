@@ -1,6 +1,6 @@
 {
   "name": "malta-pug",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Malta plugin to live compile pug files to html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,13 +16,13 @@
     "malta pug plugin"
   ],
   "author": "Federico Ghedina <federico.ghedina@gmail.com>",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/fedeghe/malta-pug/issues"
   },
   "dependencies": {
     "pug": "^2.0.0-beta6",
-    "malta": ">=3.0.0"
+    "malta": ">=3.4.0"
   },
   "main": "./index.js"
 }
