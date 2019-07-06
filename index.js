@@ -24,11 +24,14 @@ function malta_pug(o, options) {
 					err && self.doErr(err, o, pluginName);
 					msg = 'plugin ' + pluginName.white() + ' wrote ' + o.name + ' (' + self.getSize(o.name) + ')';
 					fs.unlink(oldname, () => {});
-					solve(o);
+					err
+                        ? reject(`Plugin ${pluginName} write error:\n${err}`)
+                        : solve(o);
 					self.notifyAndUnlock(start, msg);
 				});
 			});
 		} catch (err) {
+            reject(`Plugin ${pluginName} error:\n${err}`)
 			self.doErr(err, o, pluginName);
 		}
 	};
