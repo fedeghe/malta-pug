@@ -1,6 +1,5 @@
 ---
 [![npm version](https://badge.fury.io/js/malta-pug.svg)](http://badge.fury.io/js/malta-pug)
-[![Dependencies](https://david-dm.org/fedeghe/malta-pug.svg)](https://david-dm.org/fedeghe/malta-pug)
 [![npm downloads](https://img.shields.io/npm/dt/malta-pug.svg)](https://npmjs.org/package/malta-pug)
 [![npm downloads](https://img.shields.io/npm/dm/malta-pug.svg)](https://npmjs.org/package/malta-pug)  
 ---  

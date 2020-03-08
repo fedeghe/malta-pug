@@ -1,26 +1,24 @@
 //
 // https://pugjs.org
 //
-
-require('malta').checkDeps('pug');
-
-var pug = require('pug'),
+const pug = require('pug'),
 	path = require('path'),
 	fs = require('fs');
 
 function malta_pug(o, options) {
-	var self = this,
+	const self = this,
 		start = new Date(),
-		msg,
 		oldname = o.name,
         pluginName = path.basename(path.dirname(__filename));
 
-	return function (solve, reject){
+    let msg;
+
+	return (solve, reject) => {
 		try {
-			pug.renderFile(o.name, {basedir : self.baseDir}, function (x, content) {
+			pug.renderFile(o.name, {basedir : self.baseDir}, (x, content) => {
 				o.content = content;
 				o.name = o.name.replace(/\.pug$/, '.html');
-				fs.writeFile(o.name, o.content, function(err) {
+				fs.writeFile(o.name, o.content, err => {
 					err && self.doErr(err, o, pluginName);
 					msg = 'plugin ' + pluginName.white() + ' wrote ' + o.name + ' (' + self.getSize(o.name) + ')';
 					fs.unlink(oldname, () => {});
